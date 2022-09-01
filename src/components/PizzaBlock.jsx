@@ -1,4 +1,12 @@
-export function PizzaBlock(props) {
+import React, { useState } from "react";
+
+export function PizzaBlock({ price, title }) {
+  const [count, setCount] = useState(0);
+
+  const onClickButton = () => {
+    setCount(count + 1);
+  };
+
   return (
     <div className="pizza-block">
       <img
@@ -6,7 +14,7 @@ export function PizzaBlock(props) {
         src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
         alt="Pizza"
       />
-      <h4 className="pizza-block__title">{props.title}</h4>
+      <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
           <li className="active">тонкое</li>
@@ -19,8 +27,11 @@ export function PizzaBlock(props) {
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {props.price} ₽</div>
-        <div className="button button--outline button--add">
+        <div className="pizza-block__price">от {price} ₽</div>
+        <div
+          onClick={onClickButton}
+          className="button button--outline button--add"
+        >
           <svg
             width="12"
             height="12"
@@ -34,7 +45,7 @@ export function PizzaBlock(props) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          <i>{count}</i>
         </div>
       </div>
     </div>
