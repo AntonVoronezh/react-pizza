@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+
+const cat = ["Все", "Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
 
 export function Categories() {
-    return (
-        <div className="categories">
-            <ul>
-                <li className="active">Все</li>
-                <li>Мясные</li>
-                <li>Вегетарианская</li>
-                <li>Гриль</li>
-                <li>Острые</li>
-                <li>Закрытые</li>
-            </ul>
-        </div>
-    );
+  const [categ, setCateg] = useState(0);
+
+  const onCatClick = (i) => setCateg(i);
+
+  return (
+    <div className="categories">
+      <ul>
+        {cat.map((el, i) => {
+          return (
+            <li
+              onClick={() => onCatClick(i)}
+              className={i === categ ? "active" : ""}
+            >
+              {el}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
