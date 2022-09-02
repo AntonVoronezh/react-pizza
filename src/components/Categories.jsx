@@ -13,6 +13,7 @@ export function Categories() {
         {cat.map((el, i) => {
           return (
             <li
+              key={i}
               onClick={() => onCatClick(i)}
               className={i === categ ? "active" : ""}
             >

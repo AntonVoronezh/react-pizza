@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 export function PizzaBlock({ price, title, imageUrl, sizes, types }) {
-  const [activeType, setActiveType] = useState();
-  const [activeSize, setActiveSize] = useState();
+  const [activeType, setActiveType] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
 
   const type = ["тонкое", "традиционное"];
 
@@ -19,7 +19,7 @@ export function PizzaBlock({ price, title, imageUrl, sizes, types }) {
                 className={activeType === val ? "active" : ""}
                 key={val}
               >
-                {type[val]}{" "}
+                {type[val]}
               </li>
             );
           })}

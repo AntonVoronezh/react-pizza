@@ -13,6 +13,7 @@ function App() {
         <div className="container">
           <div className="content__top">
             <Categories />
+              <br/>
             <Sort />
           </div>
           <h2 className="content__title">Все пиццы</h2>
@@ -20,12 +21,8 @@ function App() {
             {pizza.map((obj) => {
               return (
                 <PizzaBlock
-                  key={obj.id}
-                  title={obj.title}
-                  price={obj.price}
-                  imageUrl={obj.imageUrl}
-                  sizes={obj.sizes}
-                  types={obj.types}
+                    key={obj.id}
+                    {...obj}
                 />
               );
             })}
