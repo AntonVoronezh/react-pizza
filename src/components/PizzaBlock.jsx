@@ -1,34 +1,46 @@
 import React, { useState } from "react";
 
 export function PizzaBlock({ price, title, imageUrl, sizes, types }) {
+  const [activeType, setActiveType] = useState();
+  const [activeSize, setActiveSize] = useState();
 
-    const type = ['тонкое', 'традиционное']
+  const type = ["тонкое", "традиционное"];
 
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src={imageUrl}
-        alt="Pizza"
-      />
+      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-            {types.map(val => {
-                return  <li key={val}> {type[val]}  </li>
-            })}
+          {types.map((val) => {
+            return (
+              <li
+                onClick={() => setActiveType(val)}
+                className={activeType === val ? "active" : ""}
+                key={val}
+              >
+                {type[val]}{" "}
+              </li>
+            );
+          })}
         </ul>
         <ul>
-            {sizes.map(val => {
-                return  <li key={val}> {val} см. </li>
-            })}
+          {sizes.map((val, i) => {
+            return (
+              <li
+                onClick={() => setActiveSize(i)}
+                className={activeSize === i ? "active" : ""}
+                key={val}
+              >
+                {val} см.{" "}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div
-          className="button button--outline button--add"
-        >
+        <div className="button button--outline button--add">
           <svg
             width="12"
             height="12"
