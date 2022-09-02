@@ -1,35 +1,32 @@
 import React, { useState } from "react";
 
-export function PizzaBlock({ price, title }) {
-  const [count, setCount] = useState(0);
+export function PizzaBlock({ price, title, imageUrl, sizes, types }) {
 
-  const onClickButton = () => {
-    setCount(count + 1);
-  };
+    const type = ['тонкое', 'традиционное']
 
   return (
     <div className="pizza-block">
       <img
         className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        src={imageUrl}
         alt="Pizza"
       />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+            {types.map(val => {
+                return  <li key={val}> {type[val]}  </li>
+            })}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+            {sizes.map(val => {
+                return  <li key={val}> {val} см. </li>
+            })}
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
         <div
-          onClick={onClickButton}
           className="button button--outline button--add"
         >
           <svg
@@ -45,7 +42,7 @@ export function PizzaBlock({ price, title }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>{count}</i>
+          <i>0</i>
         </div>
       </div>
     </div>
