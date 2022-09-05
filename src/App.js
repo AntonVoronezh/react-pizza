@@ -1,21 +1,20 @@
-import "./scss/app.scss";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
-import { Categories } from "./components/Categories";
-import { Sort } from "./components/Sort";
-import { PizzaBlock } from "./components/PizzaBlock/PizzaBlock";
-import { useEffect, useState } from "react";
-import { Skeleton } from "./components/PizzaBlock/Sceleton";
+import "./scss/app.scss";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
-
-
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
         <div className="container">
-<Home />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
         </div>
       </div>
     </div>
