@@ -13,7 +13,7 @@ const Home = () => {
     fetch("https://631605e033e540a6d38ab6c6.mockapi.io/items")
       .then((res) => res.json())
       .then((items) => {
-        setItems(items);
+        setItems(items.filter(el=> !!el.price));
         setIsLoading(false);
       });
   }, []);
