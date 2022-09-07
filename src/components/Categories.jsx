@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setCateg } from "../redux/slices/filterSlice";
 
 const cat = ["Все", "Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
 
 export function Categories() {
-  const [categ, setCateg] = useState(0);
+  const categ = useSelector((state) => state.filter.categ);
+  const dispatch = useDispatch();
 
-  const onCatClick = (i) => setCateg(i);
+  const onCatClick = (i) => dispatch(setCateg(i));
 
   return (
     <div className="categories">
