@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Categories } from "../components/Categories";
 import { Sort } from "../components/Sort";
 import { Skeleton } from "../components/PizzaBlock/Sceleton";
 import { PizzaBlock } from "../components/PizzaBlock/PizzaBlock";
 import { useEffect, useState } from "react";
 import qs from "qs";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {setFilters} from "../redux/slices/filterSlice";
+import { setFilters } from "../redux/slices/filterSlice";
 
 const Home = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { categ, sort } = useSelector((state) => state.filter);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const isFirst = useRef(false);
 
   useEffect(() => {
     fetch("https://631605e033e540a6d38ab6c6.mockapi.io/items")
@@ -26,11 +27,10 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-    useEffect(() => {
-        const query = qs.parse(window.location.search.substring(1));
-        dispatch(setFilters(query))
-
-    }, []);
+  useEffect(() => {
+    const query = qs.parse(window.location.search.substring(1));
+    dispatch(setFilters(query));
+  }, []);
 
   useEffect(() => {
     const query = qs.stringify({
@@ -38,8 +38,11 @@ const Home = () => {
       sort,
     });
 
-    navigate("?" + query);
+    // if (!isFirst.current) {
+      navigate("?" + query);
+    // }
 
+    isFirst.current = true;
   }, [categ, sort]);
 
   return (
