@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../../redux/slices/cartSlice";
 
 export function PizzaBlock({ id, price, title, imageUrl, sizes, types }) {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
+  const dispatch = useDispatch();
 
   const type = ["тонкое", "традиционное"];
 
@@ -13,9 +15,11 @@ export function PizzaBlock({ id, price, title, imageUrl, sizes, types }) {
       price,
       title,
       imageUrl,
-      type: setActiveType,
+      type: type[setActiveType],
       size: setActiveSize,
     };
+
+    dispatch(addItem(item));
   };
 
   return (
@@ -65,7 +69,7 @@ export function PizzaBlock({ id, price, title, imageUrl, sizes, types }) {
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
+          <span onClick={onClickAdd}>Добавить</span>
           <i>0</i>
         </div>
       </div>

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const Cart = () => {
+  const dispatch = useDispatch();
+
   const totalCount = 0;
   const totalPrice = 0;
 
