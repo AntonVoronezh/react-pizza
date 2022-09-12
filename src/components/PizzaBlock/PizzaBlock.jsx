@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-export function PizzaBlock({ price, title, imageUrl, sizes, types }) {
+export function PizzaBlock({ id, price, title, imageUrl, sizes, types }) {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
   const type = ["тонкое", "традиционное"];
+
+  const onClickAdd = () => {
+    const item = {
+      id,
+      price,
+      title,
+      imageUrl,
+      type: setActiveType,
+      size: setActiveSize,
+    };
+  };
 
   return (
     <div className="pizza-block">

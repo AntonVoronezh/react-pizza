@@ -9,12 +9,18 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setCateg(state, action) {
-      state.categ = action.payload;
+    addProduct(state, action) {
+      state.items.push(action.payload);
+    },
+    removeProduct(state, action) {
+      state.items.filter((el) => el.id !== action.payload);
+    },
+    clearItems(state, action) {
+      state.items = [];
     },
   },
 });
 
-export const { setCateg } = cartSlice.actions;
+export const { addProduct, removeProduct, clearItems } = cartSlice.actions;
 
 export default cartSlice.reducer;
